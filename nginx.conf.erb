@@ -3,12 +3,13 @@ set $grafana_url <%= ENV['GRAFANA_URL'] %>;
 set $influx_db_url <%= ENV['INFLUX_DB_URL'] %>;
 
 server {
+  listen 443;
   server_name metrics.integration.pix.fr;
   # the rest of the config
 
   location / {
     proxy_set_header Host $grafana_url;
-    proxy_redirect https://$grafana_url https://metrics.integration.pix.fr/;
+    proxy_redirect $grafana_url https://metrics.integration.pix.fr/;
   }
 }
 
