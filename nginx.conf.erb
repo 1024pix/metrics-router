@@ -1,5 +1,6 @@
 
 location /grafana {
+  proxy_set_header Host $host;
   rewrite ^grafana/(.*)$ /$1 break;
   proxy_pass <%= ENV["GRAFANA_URL"] %>;
 }
