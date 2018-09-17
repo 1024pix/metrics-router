@@ -1,7 +1,6 @@
 
 location /grafana {
-  proxy_set_header Host <%= ENV["GRAFANA_URL"] %>;
-  proxy_redirect <%= ENV["GRAFANA_URL"] %> https://metrics.integration.pix.fr/grafana;
+  rewrite ^grafana/(.*)$ /$1 break;
   proxy_pass <%= ENV["GRAFANA_URL"] %>;
 }
 
