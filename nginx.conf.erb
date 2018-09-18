@@ -3,7 +3,7 @@ set $influxdb_url <%= ENV['INFLUX_DB_URL'] %>;
 
 set $redirect_url $grafana_url;
 
-resolver 91.121.161.184;
+resolver 8.8.8.8;
 
 if ($host ~ "db.metrics.*") {
   set $redirect_url $influxdb_url;
