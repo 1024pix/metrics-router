@@ -1,6 +1,10 @@
-set $redirect_url ENV["GRAFANA_URL"];
+set $grafana_url <%= ENV['GRAFANA_URL'] %>;
+set $influxdb_url <%= ENV['INFLUX_DB_URL'] %>;
+
+set $redirect_url $grafana_url;
+
 if ($host ~ "db.metrics.*") {
-  set $redirect_url ENV["INFLUX_DB_URL"];
+  set $redirect_url $influxdb_url;
 }
 
 location / {
