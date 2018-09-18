@@ -1,8 +1,8 @@
-
-location / {
-  proxy_pass <%= ENV["GRAFANA_URL"] %>;
+set $redirect_url ENV["GRAFANA_URL"];
+if ($host ~ "db.metrics.*") {
+  set $redirect_url ENV["INFLUX_DB_URL"];
 }
 
-location /db {
-  proxy_pass <%= ENV["INFLUX_DB_URL"] %>;
+location / {
+  proxy_pass $redirect_url;
 }
